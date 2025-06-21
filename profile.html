@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile - Quiz Game</title>
+  <link rel="stylesheet" href="style2.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .profile-container {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 350px;
+      position: relative;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      background: url('https://i.pravatar.cc/100') no-repeat center;
+      background-size: cover;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+    }
+
+    h2 {
+      margin: 10px 0 5px;
+    }
+
+    .email {
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    .profile-details p {
+      margin: 10px 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      background-color: #0077ff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #005dd1;
+    }
+
+    .bottom-btns {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="avatar"></div>
+    <h2 id="displayName">Jenny Wilson</h2>
+    <p class="email" id="displayEmail">jenny.wilson@example.com</p>
+    
+    <div class="profile-details">
+      <label><strong>Username:</strong></label>
+      <input type="text" id="username" value="jenny.wilson">
+
+      <label><strong>Email:</strong></label>
+      <input type="email" id="email" value="jenny.wilson@example.com">
+      
+      <div class="bottom-btns">
+        <button class="btn" onclick="saveProfile()">Save Changes</button>
+        <button class="btn" onclick="goHome()">Go to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function saveProfile() {
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+
+      document.getElementById('displayName').textContent = username;
+      document.getElementById('displayEmail').textContent = email;
+
+      alert("Profile updated!");
+    }
+
+    function goHome() {
+      window.location.href = "index.html"; 
+    }
+
+    
+    window.onload = () => {
+      const savedUser = localStorage.getItem("userProfile");
+      if (savedUser) {
+        const user = JSON.parse(savedUser);
+        document.getElementById("username").value = user.username;
+        document.getElementById("email").value = user.email;
+        document.getElementById("displayName").textContent = user.username;
+        document.getElementById("displayEmail").textContent = user.email;
+      }
+    };
+
+    function saveProfile() {
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const user = { username, email };
+
+      localStorage.setItem("userProfile", JSON.stringify(user));
+
+      document.getElementById("displayName").textContent = username;
+      document.getElementById("displayEmail").textContent = email;
+
+      alert("Profile updated successfully!");
+    }
+  </script>
+</body>
+</html>

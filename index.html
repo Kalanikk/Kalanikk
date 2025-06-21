@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MT Quiz Game - Animated Cartoon</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: linear-gradient(to bottom right, #3a3d98, #6f42c1);
+      color: white;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    }
+    .sidebar h2 {
+      margin-bottom: 30px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.3s;
+    }
+    .sidebar a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .quiz-container {
+      margin-left: 240px;
+      padding: 30px;
+      flex-grow: 1;
+      animation: fadeIn 1s ease-in-out;
+      width: 100%;
+      position: relative;
+      min-height: 500px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #fff;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+
+    #cartoon-wrapper {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      align-items: flex-end;
+      z-index: 10;
+      transition: gap 0.3s ease;
+    }
+
+  
+    .cartoon {
+      position: relative;
+      width: 200px;
+      cursor: pointer;
+      animation: dance 2s ease-in-out infinite;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cartoon img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes dance {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-15px) rotate(10deg); }
+      50% { transform: translateY(0) rotate(-10deg); }
+      75% { transform: translateY(-15px) rotate(10deg); }
+    }
+
+    .speech-bubble {
+      position: absolute;
+      bottom: 140%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      color: #333;
+      padding: 8px 12px;
+      border-radius: 15px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      font-weight: bold;
+      font-size: 1rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      user-select: none;
+      z-index: 20;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 8px 8px 0 8px;
+      border-style: solid;
+      border-color: #fff transparent transparent transparent;
+    }
+
+    .cartoon:hover .speech-bubble {
+      opacity: 1;
+    }
+
+    .cartoon:hover {
+      transform: scale(1.1) translateY(-10px);
+      z-index: 15;
+      animation-play-state: paused;
+    }
+
+    #cartoon-wrapper.hover-active {
+      gap: 10px;
+    }
+
+    
+    #background-animation {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;   
+      height: 500px;  
+      border-radius: 20px;
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      animation: bgZoom 20s ease-in-out infinite alternate;
+      z-index: 5;
+      filter: brightness(0.85) saturate(1.1);
+    }
+
+    @keyframes bgZoom {
+      0% {
+        transform: translateX(-50%) scale(1);
+      }
+      100% {
+        transform: translateX(-50%) scale(1.15);
+      }
+    }
+
+    
+    #creative-topic {
+      position: relative;
+      z-index: 15;
+      font-size: 2.5rem;
+      font-style: italic;
+      font-weight: 600;
+      color: #f5f0ff;
+      text-shadow:
+        2px 2px 8px rgba(111, 66, 193, 0.8),
+        -2px -2px 8px rgba(58, 61, 152, 0.8);
+      max-width: 80%;
+      margin-top: 20px;
+      user-select: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>MT Quiz</h2>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="profile.html">Profile</a>
+  </div>
+
+  <div class="quiz-container">
+    <div id="cartoon-wrapper">
+      <div class="cartoon" id="garfield">
+        <img src="garfeeld.png" alt="Garfield" />
+        <div class="speech-bubble">Hi! I'm Garfield 😺</div>
+      </div>
+
+      <div class="cartoon" id="aladeen">
+        <img src="aladeen.png" alt="Aladeen" />
+        <div class="speech-bubble">Hello! I'm Aladeen 🤠</div>
+      </div>
+    </div>
+    
+  </div>
+
+  <script>
+    const cartoonWrapper = document.getElementById('cartoon-wrapper');
+    const quizContainer = document.querySelector('.quiz-container');
+
+    
+    cartoonWrapper.querySelectorAll('.cartoon').forEach(cartoon => {
+      cartoon.addEventListener('mouseenter', () => {
+        cartoonWrapper.classList.add('hover-active');
+      });
+      cartoon.addEventListener('mouseleave', () => {
+        cartoonWrapper.classList.remove('hover-active');
+      });
+    });
+
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        if (cartoonWrapper) {
+          cartoonWrapper.style.transition = 'opacity 1s ease';
+          cartoonWrapper.style.opacity = 0;
+          setTimeout(() => {
+            cartoonWrapper.remove();
+
+            
+            const bgAnimDiv = document.createElement('div');
+            bgAnimDiv.id = 'background-animation';
+            quizContainer.appendChild(bgAnimDiv);
+
+           
+            const creativeText = document.createElement('div');
+            creativeText.id = 'creative-topic';
+            creativeText.textContent = 'Unleash Your Mind: Dive Into the Realm of Infinite Quizzes!';
+            quizContainer.appendChild(creativeText);
+
+          }, 1000);
+        }
+      }, 7000);
+    });
+  </script>
+
+</body>
+</html>
+

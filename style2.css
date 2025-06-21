@@ -1,0 +1,68 @@
+/* Leaderboard and Profile Specific Styles */
+.leaderboard-container, .profile-container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  margin: 60px auto;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.leaderboard-list {
+  list-style: none;
+  padding: 0;
+}
+
+.leaderboard-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+}
+
+.rank {
+  font-weight: bold;
+  color: #4e73df;
+}
+
+.points {
+  font-weight: bold;
+  color: #1cc88a;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #cce0ff;
+  margin: 0 auto 15px auto;
+}
+
+.email {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.profile-details p {
+  text-align: left;
+  margin: 10px 0;
+  font-size: 14px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to MT Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .container img {
+      width: 180px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .play-btn {
+      background: #ff4081;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .play-btn:hover {
+      background: #e91e63;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="aladeen.png" alt="Aladeen Image" />
+    <div class="title">Welcome to MT Quiz Game!</div>
+    <p>To play the quiz, please register first.</p>
+    <button class="play-btn" onclick="window.location.href='register.html'">Play Quiz</button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="style2.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .leaderboard-container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .leaderboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .leaderboard-header h2 {
+      margin: 0;
+    }
+    .search-box {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 50%;
+    }
+    .leaderboard-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    .leaderboard-list li {
+      padding: 10px;
+      margin: 8px 0;
+      background: #f9f9f9;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .register-form {
+      margin-top: 30px;
+    }
+    .register-form input {
+      padding: 8px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 30%;
+    }
+    .register-form button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    .info-box {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="leaderboard-container">
+    <div class="leaderboard-header">
+      <h2>Leaderboard</h2>
+      <input type="text" placeholder="Search..." class="search-box" onkeyup="searchUser(this.value)">
+    </div>
+
+    <ul class="leaderboard-list" id="leaderboard-list">
+      
+    </ul>
+
+    <div class="register-form">
+      <input type="text" id="name" placeholder="Name" oninput="showUserInfo(this.value)">
+      <input type="number" id="rank" placeholder="Rank">
+      <input type="number" id="points" placeholder="Points">
+      <button onclick="addUser()">Add</button>
+      <div class="info-box" id="user-info"></div>
+    </div>
+  </div>
+
+  <script>
+    const users = [
+      { name: "Jacoh Jones", rank: 1, points: 2950 },
+      { name: "Courtney Henry", rank: 2, points: 1970 },
+      { name: "Jenny Wilson", rank: 3, points: 1730 },
+      { name: "Wade Warren", rank: 4, points: 1640 },
+      { name: "Cameron Williamson", rank: 5, points: 1489 },
+    ];
+
+    function renderLeaderboard(list = users) {
+      const ul = document.getElementById('leaderboard-list');
+      ul.innerHTML = "";
+      list.forEach(user => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="rank">${user.rank}</span> ${user.name} <span class="points">${user.points} pts</span>`;
+        ul.appendChild(li);
+      });
+    }
+
+    function addUser() {
+      const name = document.getElementById('name').value.trim();
+      const rank = parseInt(document.getElementById('rank').value);
+      const points = parseInt(document.getElementById('points').value);
+
+      if (!name || isNaN(rank) || isNaN(points)) {
+        alert("Fill all fields!");
+        return;
+      }
+
+      users.push({ name, rank, points });
+      renderLeaderboard();
+      document.getElementById('name').value = '';
+      document.getElementById('rank').value = '';
+      document.getElementById('points').value = '';
+      document.getElementById('user-info').innerText = '';
+    }
+
+    function searchUser(query) {
+      const filtered = users.filter(user => user.name.toLowerCase().includes(query.toLowerCase()));
+      renderLeaderboard(filtered);
+    }
+
+    function showUserInfo(inputName) {
+      const found = users.find(user => user.name.toLowerCase() === inputName.toLowerCase());
+      if (found) {
+        document.getElementById('user-info').innerText = `Rank: ${found.rank}, Points: ${found.points}`;
+      } else {
+        document.getElementById('user-info').innerText = '';
+      }
+    }
+
+    
+    renderLeaderboard();
+  </script>
+</body>
+</html>
